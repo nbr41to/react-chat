@@ -23,45 +23,43 @@ const SignUpPage = () => {
   }
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <form onSubmit={(e) => onSubmit(e)} style={{ width: "300px" }}>
-        <Paper variant="outlined">
-          <Box p={4}>
-            <Grid container direction="column" alignItems="center" spacing={2}>
-              <h1>SIGNUP</h1>
-              <Grid item>
-                <TextField
-                  label="Email"
-                  variant="outlined"
-                  value={email}
-                  onChange={(e) => { setEmail(e.target.value) }}
-                />
-              </Grid>
-              <Grid item>
-                <TextField
-                  label="Your Name"
-                  variant="outlined"
-                  value={name}
-                  onChange={(e) => { setName(e.target.value) }}
-                />
-              </Grid>
-              <Grid item>
-                <TextField
-                  label="password"
-                  variant="outlined"
-                  value={password}
-                  type="Password"
-                  onChange={(e) => { setPassword(e.target.value) }}
-                />
-              </Grid>
-              <Grid item>
-                <Button variant="contained" color="secondary" type="submit">送信</Button>
-              </Grid>
+    <form onSubmit={(e) => onSubmit(e)} style={{ width: "300px", margin: "28px auto" }}>
+      <Paper variant="outlined">
+        <Box p={4}>
+          <Grid container direction="column" alignItems="center" spacing={2}>
+            <h1>SIGNUP</h1>
+            <Grid item>
+              <TextField
+                label="Email"
+                variant="outlined"
+                value={email}
+                onChange={(e) => { setEmail(e.target.value) }}
+              />
             </Grid>
+            <Grid item>
+              <TextField
+                label="Your Name"
+                variant="outlined"
+                value={name}
+                onChange={(e) => { setName(e.target.value) }}
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                label="password"
+                variant="outlined"
+                value={password}
+                type="Password"
+                onChange={(e) => { setPassword(e.target.value) }}
+              />
+            </Grid>
+          </Grid>
+          <Box m={2}>
+            <Button fullWidth variant="contained" color="secondary" type="submit">送信</Button>
           </Box>
-        </Paper>
-      </form>
-    </div>
+        </Box>
+      </Paper>
+    </form>
   )
 }
 
