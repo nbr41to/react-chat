@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid"
 import Button from "@material-ui/core/Button"
 import Paper from "@material-ui/core/Paper"
 import Box from "@material-ui/core/Box"
-
+import firebase from "./firebase"
 
 const SignUpPage = () => {
   const [email, setEmail] = useState("")
@@ -13,7 +13,13 @@ const SignUpPage = () => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log(email + ":" + name + ":" + password)
+    firebase.auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log("アカウントを新規作成しました！")
+      }).catch((error) => {
+        console.log(error)
+      })
   }
 
   return (
@@ -49,7 +55,7 @@ const SignUpPage = () => {
                 />
               </Grid>
               <Grid item>
-                <Button variant="contained" color="primary" type="submit">送信</Button>
+                <Button variant="contained" color="secondary" type="submit">送信</Button>
               </Grid>
             </Grid>
           </Box>
