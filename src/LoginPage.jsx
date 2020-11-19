@@ -19,8 +19,6 @@ const LoginPage = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  console.log(user)
-
   const onSubmit = (e) => {
     e.preventDefault()
     firebase.auth()

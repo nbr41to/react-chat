@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import Auth from './Auth'
 import IsLogedIn from './IsLogedIn'
+import LoginCheck from './LoginCheck'
 
 import ChatPage from './ChatPage'
 import LoginPage from './LoginPage'
@@ -11,6 +12,7 @@ function App() {
   return (
     <Auth>
       <BrowserRouter>
+        <LoginCheck />
         <Link to="/">Chat</Link>
         <Link to="/login">Login</Link>
         <Link to="/signup">Signup</Link>
