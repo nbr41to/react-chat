@@ -11,7 +11,7 @@ import Button from "@material-ui/core/Button"
 import Paper from "@material-ui/core/Paper"
 import Box from "@material-ui/core/Box"
 
-
+import "./styles.css"
 
 const LoginPage = () => {
   const { user, setUser } = useContext(AuthContext)
@@ -42,7 +42,7 @@ const LoginPage = () => {
       <Paper variant="outlined">
         <Box p={4}>
           <Grid container direction="column" alignItems="center" spacing={2}>
-            <h1>LOGIN</h1>
+            <h1 className="title">LOGIN</h1>
             <Grid item xs>
               <TextField
                 label="Email"

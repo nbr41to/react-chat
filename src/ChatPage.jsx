@@ -5,6 +5,8 @@ import firebase, { db } from "./firebase"
 import Button from "@material-ui/core/Button"
 import TextField from "@material-ui/core/TextField"
 
+import styles from "./ChatPage.module.scss"
+
 const ChatPage = () => {
   const { setUser } = useContext(AuthContext)
   const [userName, setUserName] = useState("")
@@ -15,12 +17,14 @@ const ChatPage = () => {
     firebase.firestore().collection("messages").add({
       name: userName,
       content: message,
+      sendAt: Date.now(),
     }).then(function (docRef) {
       console.log("成功！");
     })
       .catch(function (error) {
         console.error("失敗");
       });
+    setMessage("")
   }
 
   useEffect(() => {
@@ -30,13 +34,18 @@ const ChatPage = () => {
   }, [])
 
   useEffect(() => {
-    firebase.firestore().collection("messages").get().then((docs) => {
+    firebase.firestore().collection("messages").onSnapshot((docs) => {
       const getMessages = []
       docs.forEach((doc) => {
         console.log(doc.data())
         getMessages.push(doc.data())
       })
       console.log(getMessages)
+      getMessages.sort((a, b) => {
+        if (a.sendAt < b.sendAt) return 1;
+        if (a.sendAt > b.sendAt) return -1;
+        return 0;
+      });
       setMessages(getMessages)
     })
   }, [])
@@ -69,7 +78,7 @@ const ChatPage = () => {
 
   return (
     <div>
-      <h1>Chat Page</h1>
+      <h1 className={styles.title}>Chat Page</h1>
       <p>こんにちは！{userName}さん！</p>
       <hr />
       {messages.map((message, index) => <p className="box">{message.name}: {message.content}</p>)}
@@ -87,13 +96,13 @@ const ChatPage = () => {
         send
       </Button>
 
-      {/* <Button
+      <Button
         variant="contained"
         fullWidth
         onClick={logout}
       >
         Logout
-      </Button> */}
+      </Button>
     </div>
   )
 }
