@@ -4,8 +4,11 @@ import firebase, { db } from "./firebase"
 
 import Button from "@material-ui/core/Button"
 import TextField from "@material-ui/core/TextField"
+import Message from "./Message"
 
 import styles from "./ChatPage.module.scss"
+import styled from "styled-components"
+
 
 const ChatPage = () => {
   const { setUser } = useContext(AuthContext)
@@ -76,13 +79,25 @@ const ChatPage = () => {
   //   },
   // }
 
+  const jsStyle = {
+    color: "blue",
+    backgroundColor: "",
+  }
+
+  const StyledComponent = styled.div`
+    p {
+      border: 1px solid #444;
+      border-radius: 4px;
+      padding: 8px 16px;
+      margin: 8px;
+    }
+  `
+
   return (
     <div>
       <h1 className={styles.title}>Chat Page</h1>
       <p>こんにちは！{userName}さん！</p>
-      <hr />
-      {messages.map((message, index) => <p className="box">{message.name}: {message.content}</p>)}
-      <hr />
+      {messages.map((message, index) => <Message key={index} message={message} />)}
       <TextField
         label="Message"
         variant="outlined"
